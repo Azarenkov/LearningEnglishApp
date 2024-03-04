@@ -48,4 +48,17 @@ class MainViewModel: ObservableObject {
         isUserCurrentlyLoggedOut.toggle()
         try? FirebaseManager.shared.auth.signOut()
     }
+    
+    func navigationTitle(for tab: Int) -> String {
+        switch tab {
+        case 0:
+            return "Topics"
+        case 1:
+            return "Tasks"
+        case 2:
+            return "Settings"
+        default:
+            return ""
+        }
+    }
 }

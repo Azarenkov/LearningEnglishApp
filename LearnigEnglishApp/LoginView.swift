@@ -24,8 +24,13 @@ struct LoginView: View {
     @State var loginStatusMessage = ""
     
     var body: some View {
-        NavigationView {
+//        NavigationView {
             VStack {
+                HStack {
+                    Text(isLoginMode ? "Login" : "Sign Up")
+                        .font(.bold(.largeTitle)())
+                    Spacer()
+                }
                 Picker(selection: $isLoginMode, label: Text("Picker")) {
                     Text("Login")
                         .tag(true)
@@ -60,8 +65,7 @@ struct LoginView: View {
             .fullScreenCover(isPresented: $shouldShowMainView, onDismiss: nil) {
                                 MainView()
             }
-            .navigationTitle(isLoginMode ? "Login" : "Sign Up")
-        }
+//        }
     }
     
     private var textFields: some View {
@@ -80,7 +84,7 @@ struct LoginView: View {
             }
             .padding(.vertical, 10)
             .padding(.horizontal)
-            .background(Color(.systemGray5))
+            .background(Color(.systemGray6))
             .cornerRadius(8)
             .shadow(radius: 4)
             .padding(.horizontal)
@@ -116,14 +120,13 @@ struct LoginView: View {
         FirebaseManager.shared.auth.signIn(withEmail: email, password: password) {
             result, err in
             if let err = err {
-                self.loginStatusMessage = "Failed to login user: \(err)"
+                self.loginStatusMessage = "Failed to login user: \(err.localizedDescription)"
                 alertMessage = loginStatusMessage
                 showAlert.toggle()
                 return
             }
             self.loginStatusMessage = "Successfully logged in as user: \(result?.user.uid ?? "")"
             
-//            self.didCompleteLoginProcess()
             shouldShowMainView.toggle()
         }
     }
@@ -141,7 +144,7 @@ struct LoginView: View {
             result, err in
             if let err = err {
 //              print("Failed to create user:", err)
-                self.loginStatusMessage = "Failed to create: \(err)"
+                self.loginStatusMessage = "Failed to create: \(err.localizedDescription)"
                 alertMessage = loginStatusMessage
                 showAlert.toggle()
                 return
@@ -161,27 +164,18 @@ struct LoginView: View {
         FirebaseManager.shared.firestore.collection("users")
             .document(uid).setData(userData) { err in
                 if let err = err {
-                    self.loginStatusMessage = "\(err)"
+                    self.loginStatusMessage = "\(err.localizedDescription)"
                     return
                 }
                 print("success")
-                
-//                self.didCompleteLoginProcess()
             }
     }
 }
 
-
-//#Preview {
-//    LoginView()
-//}
-
 struct LoginView_Prewiews: PreviewProvider {
     static var previews: some View {
         LoginView(
-//            didCompleteLoginProcess: {
-//            
-//        }
+
         )
     }
 }

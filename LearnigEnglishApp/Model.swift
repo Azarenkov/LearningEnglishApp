@@ -11,3 +11,15 @@ struct User: Codable, Identifiable {
     @DocumentID var id: String?
     var uid, email, nickname: String
 }
+
+struct Topic: Identifiable, Codable {
+    @DocumentID var id: String?
+    var title: String
+    var text: String
+    var russian: String
+}
+
+struct Privacy: Identifiable, Codable {
+    @DocumentID var id: String?
+    var text: String
+}
