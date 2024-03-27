@@ -34,7 +34,6 @@ class SettingsViewModel: ObservableObject {
                 return
             }
             
-            
             self.user = try? snapshot?.data(as: User.self)
             FirebaseManager.shared.currentUser = self.user
         }

@@ -11,51 +11,66 @@ struct SettingsView: View {
     
     @ObservedObject private var vm = MainViewModel()
     
-    @Binding var shouldShowLogOutOptions: Bool
+//    @Binding var shouldShowLogOutOptions: Bool
+    
+    @State var shouldShowLogOutOptions = false
+    @State var shouldShowLoginView = false
 
     var body: some View {
-        Form {
-            
-            Section(header: Text("Information")) {
+//        NavigationView {
+            Form {
                 
-                NavigationLink {
-                    ProfileView()
-                        .navigationTitle("Profile")
-                } label: {
-                    Image(systemName: "person.fill")
-                    Text("Profile")
-                }
-                
-                NavigationLink {
+                Section(header: Text("Information")) {
                     
-                } label: {
-                    Image(systemName: "medal")
-                    Text("Results")
+                    NavigationLink {
+                        ProfileView()
+                            .navigationTitle("Profile")
+                    } label: {
+                        Image(systemName: "person.fill")
+                        Text("Profile")
+                    }
+                    
+                    NavigationLink {
+                        
+                    } label: {
+                        Image(systemName: "medal")
+                        Text("Results")
+                    }
+                    
+                    
+                    NavigationLink {
+                        PrivacyView()
+                            .navigationTitle("Privacy & Security")
+                    } label: {
+                        Image(systemName: "info.circle")
+                        Text("Privacy & Security")
+                    }
                 }
                 
-                
-                NavigationLink {
-                    PrivacyView()
-                        .navigationTitle("Privacy & Security")
-                } label: {
-                    Image(systemName: "info.circle")
-                    Text("Privacy & Security")
+                Section {
+                    Button {
+                        //                        vm.handleSignOut()
+                        shouldShowLogOutOptions.toggle()
+                    } label: {
+                        Text("Log out")
+                    }
                 }
             }
-            
-            Section {
-                Button {
-                    //                        vm.handleSignOut()
-                    shouldShowLogOutOptions.toggle()
-                } label: {
-                    Text("Log out")
-                }
-                
-                
+            .actionSheet(isPresented: $shouldShowLogOutOptions) {
+                .init(title: Text("Settings"), message: Text("What do you want to do?"), buttons: [
+                    .destructive(Text("Sign out"), action: {
+                        print("handle sign out")
+                        vm.handleSignOut()
+                        shouldShowLoginView.toggle()
+                    }),
+                    .cancel()
+                ])
             }
             
-        }
-
+            .fullScreenCover(isPresented: $shouldShowLoginView) {
+                LoginView()
+            }
+//        }
     }
 }
 
@@ -91,9 +106,7 @@ struct ProfileView: View {
         .onAppear {
             vm.fetchCurrentUser()
         }
-       
     }
-    
 }
 
 struct NameView: View {
@@ -121,7 +134,8 @@ struct NameView: View {
             
             Button {
                 vm.updateName(nickname: nickname)
-                //presentationMode.wrappedValue.dismiss()
+//                presentationMode.wrappedValue.dismiss()
+                nickname = ""
             } label: {
                 Text("Submit")
             }
@@ -179,6 +193,7 @@ struct PasswordView: View {
             Button {
                 vm.updatePassword(password: password)
                 //                    presentationMode.wrappedValue.dismiss()
+                password = ""
             } label: {
                 Text("Submit")
             }
@@ -215,9 +230,17 @@ struct PrivacyView: View {
     var body: some View {
         Form {
             if let privacy = vm.privacy {
-                Text(privacy.text)
-                    .font(.callout)
-                    .padding(8)
+                Section {
+                    Text(privacy.text)
+                        .font(.callout)
+                        .padding(8)
+                }
+                
+                Section(header: Text("Руководство пользователя")) {
+                    Text(privacy.text2)
+                        .font(.callout)
+                        .padding(8)
+                }
             } else {
                 ProgressView()
             }

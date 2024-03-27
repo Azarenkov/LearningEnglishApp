@@ -12,10 +12,14 @@ import FirebaseFirestoreSwift
 class TopicViewModel: ObservableObject {
     
     @Published var topic: Topic?
+    @Published var topics: [Topic] = []
     
     init() {
         getTopic()
     }
+    
+    
+
     
     func getTopic() {
         let docRef = FirebaseManager.shared.firestore.collection("topics").document("2KqwIbemgFVjnHLX7Rda")

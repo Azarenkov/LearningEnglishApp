@@ -15,9 +15,7 @@ struct MainView: View {
     
     @ObservedObject private var vm = MainViewModel()
     
-    @State var shouldShowLogOutOptions = false
     @State var shouldShowTopicView = false
-    @State var shouldShowLoginView = false
     @State private var shouldShowTabView = true
     @State private var selectedTab = 0
     
@@ -39,160 +37,29 @@ struct MainView: View {
                     }
                     .tag(1)
                 
-                SettingsView(shouldShowLogOutOptions: $shouldShowLogOutOptions)
+                SettingsView()
                     .tabItem {
                         Image(systemName: "gear")
                         Text("Settings")
                     }
                     .tag(2)
             }
-            .actionSheet(isPresented: $shouldShowLogOutOptions) {
-                .init(title: Text("Settings"), message: Text("What do you want to do?"), buttons: [
-                    .destructive(Text("Sign out"), action: {
-                        print("handle sign out")
-                        vm.handleSignOut()
-                        shouldShowLoginView.toggle()
-                    }),
-                    .cancel()
-                ])
-            }
-            
-            .fullScreenCover(isPresented: $shouldShowLoginView) {
-                LoginView()
-                
-            }
+//            .actionSheet(isPresented: $shouldShowLogOutOptions) {
+//                .init(title: Text("Settings"), message: Text("What do you want to do?"), buttons: [
+//                    .destructive(Text("Sign out"), action: {
+//                        print("handle sign out")
+//                        vm.handleSignOut()
+//                        shouldShowLoginView.toggle()
+//                    }),
+//                    .cancel()
+//                ])
+//            }
+//            
+//            .fullScreenCover(isPresented: $shouldShowLoginView) {
+//                LoginView()
+//            }
             
             .navigationTitle(vm.navigationTitle(for: selectedTab))
-        }
-    }
-}
-
-struct TopicsView: View {
-    
-    @ObservedObject private var vm = TopicViewModel()
-    @ObservedObject private var vm2 = TopicViewModel2()
-    
-    var body: some View {
-        ScrollView {
-            
-            NavigationLink {
-                TopicView()
-                    .navigationTitle(vm.topic?.title ?? "Nothing")
-            } label: {
-                ZStack {
-                    Rectangle()
-                        .frame(width: 280, height: 150)
-                        .foregroundColor(Color(.systemCyan))
-                        .cornerRadius(15)
-                    Text("1st")
-                        .foregroundStyle(.white)
-                        .font(.system(size: 55, weight: .thin, design: .rounded))
-                }
-            }
-            .padding()
-            .shadow(radius: 10)
-            
-            
-            NavigationLink {
-                TopicView2()
-                    .navigationTitle(vm2.topic?.title ?? "Nothing")
-            } label: {
-                ZStack {
-                    Rectangle()
-                        .frame(width: 280, height: 150)
-                        .foregroundColor(Color(.systemCyan))
-                        .cornerRadius(15)
-                    Text("2nd")
-                        .foregroundStyle(.white)
-                        .font(.system(size: 55, weight: .thin, design: .rounded))
-                }
-                
-            }
-            .padding()
-            .shadow(radius: 10)
-            
-        }
-    }
-}
-
-struct TasksView: View {
-    
-    var body: some View {
-        ScrollView {
-            HStack {
-                
-                Button {
-                    
-                } label: {
-                    ZStack {
-                        Rectangle()
-                            .frame(width: 150, height: 150)
-                            .foregroundColor(Color(.systemGreen))
-                            .cornerRadius(15)
-                        Text("1st")
-                            .foregroundStyle(.white)
-                            .font(.system(size: 55, weight: .thin, design: .rounded))
-                    }
-                }
-                .shadow(radius: 10)
-                
-                Spacer()
-                
-                Button {
-                    
-                } label: {
-                    ZStack {
-                        Rectangle()
-                            .frame(width: 150, height: 150)
-                            .foregroundColor(Color(.systemGreen))
-                            .cornerRadius(15)
-                        Text("2nd")
-                            .foregroundStyle(.white)
-                            .font(.system(size: 55, weight: .thin, design: .rounded))
-                    }
-                    
-                }
-                .shadow(radius: 10)
-            }
-            .padding(.vertical)
-            .padding(.horizontal, 25)
-            
-            HStack {
-                
-                Button {
-                    
-                } label: {
-                    ZStack {
-                        Rectangle()
-                            .frame(width: 150, height: 150)
-                            .foregroundColor(Color(.systemGreen))
-                            .cornerRadius(15)
-                        Text("3rd")
-                            .foregroundStyle(.white)
-                            .font(.system(size: 55, weight: .thin, design: .rounded))
-                    }
-                }
-                .shadow(radius: 10)
-                
-                Spacer()
-                
-                Button {
-                    
-                } label: {
-                    ZStack {
-                        Rectangle()
-                            .frame(width: 150, height: 150)
-                            .foregroundColor(Color(.systemGreen))
-                            .cornerRadius(15)
-                        Text("4th")
-                            .foregroundStyle(.white)
-                            .font(.system(size: 55, weight: .thin, design: .rounded))
-                    }
-                }
-                .shadow(radius: 10)
-            }
-            .padding(.vertical)
-            .padding(.horizontal, 25)
         }
     }
 }
