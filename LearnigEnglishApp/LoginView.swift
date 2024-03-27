@@ -9,9 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     @Environment(\.colorScheme) var colorScheme
-    
-//    let didCompleteLoginProcess: () -> ()
-    
+        
     @State private var shouldShowMainView = false
         
     @State private var isLoginMode = false
@@ -24,48 +22,48 @@ struct LoginView: View {
     @State var loginStatusMessage = ""
     
     var body: some View {
-//        NavigationView {
-            VStack {
-                HStack {
-                    Text(isLoginMode ? "Login" : "Sign Up")
-                        .font(.bold(.largeTitle)())
-                    Spacer()
-                }
-                Picker(selection: $isLoginMode, label: Text("Picker")) {
-                    Text("Login")
-                        .tag(true)
-                    Text("Sign Up")
-                        .tag(false)
-                }
-                .pickerStyle(.segmented)
-                
+        VStack {
+            HStack {
+                Text(isLoginMode ? "Login" : "Sign Up")
+                    .font(.bold(.largeTitle)())
                 Spacer()
-                
-                logo
-                
-                Spacer()
-                
-                textFields
-                
-                Spacer()
-                
-                Button {
-                    
-                    fetchRequest()
-                    
-                } label: {
-                    Text(isLoginMode ? "Login" : "Sign Up")
-                }
-                .buttonStyle(.borderedProminent)
             }
-            .padding()
-            .alert(isPresented: $showAlert) {
-                Alert(title: Text("Result"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+            
+            Picker(selection: $isLoginMode, label: Text("Picker")) {
+                Text("Login")
+                    .tag(true)
+                Text("Sign Up")
+                    .tag(false)
             }
-            .fullScreenCover(isPresented: $shouldShowMainView, onDismiss: nil) {
-                                MainView()
+            .pickerStyle(.segmented)
+            
+            Spacer()
+            
+            logo
+            
+            Spacer()
+            
+            textFields
+            
+            Spacer()
+            
+            Button {
+                
+                fetchRequest()
+                
+            } label: {
+                Text(isLoginMode ? "Login" : "Sign Up")
             }
-//        }
+            .buttonStyle(.borderedProminent)
+        }
+        .padding()
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("Result"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+        }
+        
+        .fullScreenCover(isPresented: $shouldShowMainView, onDismiss: nil) {
+            MainView()
+        }
     }
     
     private var textFields: some View {
@@ -117,6 +115,7 @@ struct LoginView: View {
     }
     
     private func loginUser() {
+        
         FirebaseManager.shared.auth.signIn(withEmail: email, password: password) {
             result, err in
             if let err = err {
@@ -154,6 +153,9 @@ struct LoginView: View {
             storeUserInformation(nickname: nickname)
             self.loginStatusMessage = "Successfully created user"
             alertMessage = loginStatusMessage
+            nickname = ""
+            email = ""
+            password = ""
             showAlert.toggle()
         }
     }
