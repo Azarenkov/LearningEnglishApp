@@ -31,7 +31,8 @@ struct SettingsView: View {
                     }
                     
                     NavigationLink {
-                        
+                        ResultsView()
+                            .navigationTitle("Your statistics")
                     } label: {
                         Image(systemName: "medal")
                         Text("Results")

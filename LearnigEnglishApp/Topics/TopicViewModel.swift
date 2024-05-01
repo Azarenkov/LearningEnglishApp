@@ -11,54 +11,37 @@ import FirebaseFirestoreSwift
 
 class TopicViewModel: ObservableObject {
     
-    @Published var topic: Topic?
+//    @Published var topic: Topic?
     @Published var topics: [Topic] = []
     
     init() {
         getTopic()
     }
     
-    
-
-    
     func getTopic() {
-        let docRef = FirebaseManager.shared.firestore.collection("topics").document("2KqwIbemgFVjnHLX7Rda")
+        let docRef = FirebaseManager.shared.firestore.collection("topics")
         
-        docRef.getDocument { document, error in
-            if let document = document, document.exists {
-                do {
-                    self.topic = try document.data(as: Topic.self)
-                } catch {
-                    print("Error decoding topic: \(error)")
+        docRef.addSnapshotListener { querySnapshot, error in
+                if let error = error {
+                    print("Error fetching documents: \(error)")
+                    return
                 }
-            } else {
-                print("Document does not exist")
-            }
-        }
-    }
-}
-
-class TopicViewModel2: ObservableObject {
-    
-    @Published var topic: Topic?
-    
-    init() {
-        getTopic()
-    }
-    
-    func getTopic() {
-        let docRef = FirebaseManager.shared.firestore.collection("topics").document("xnIGwAkX74JyvV5Wuq82")
-        
-        docRef.getDocument { document, error in
-            if let document = document, document.exists {
-                do {
-                    self.topic = try document.data(as: Topic.self)
-                } catch {
-                    print("Error decoding topic: \(error)")
+                
+                guard let documents = querySnapshot?.documents else {
+                    print("No documents")
+                    return
                 }
-            } else {
-                print("Document does not exist")
+                
+                self.topics = documents.compactMap { document in
+                    do {
+                        var resultData = try document.data(as: Topic.self)
+                        resultData.id = document.documentID
+                        return resultData
+                    } catch {
+                        print("Error decoding task: \(error)")
+                        return nil
+                    }
+                }
             }
-        }
     }
 }

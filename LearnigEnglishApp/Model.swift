@@ -7,6 +7,7 @@
 
 import FirebaseFirestoreSwift
 import SwiftUI
+import FirebaseFirestore
 
 struct User: Codable, Identifiable {
     @DocumentID var id: String?
@@ -30,7 +31,20 @@ struct Privacy: Identifiable, Codable {
 
 struct Results: Identifiable, Codable {
     @DocumentID var id: String?
-    var result: Int
+    var result, tests: Int
+    var uid: String
+    var timestamp: Date
+}
+
+struct TestItem: Identifiable {
+    var id: String
+    var text: String
+    var answer: String
+}
+
+struct Test: Identifiable {
+    var id: String
+    var title: String
 }
 
 struct Item: Identifiable {

@@ -8,9 +8,63 @@
 import SwiftUI
 
 struct ResultsView: View {
+    
+    @ObservedObject private var vm = ResultsViewModel()
+    
     var body: some View {
+        
+        
         Form {
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+            Section {
+                HStack() {
+                    if let averageScore = vm.averageScore {
+                        VStack {
+                            RingChart(percentage: averageScore * 100)
+                                .padding()
+                            Text("Correct answers")
+                        }
+                    } else {
+                        Text("Loading...")
+                    }
+                    Spacer()
+                    
+                    VStack {
+                        ZStack {
+                            Circle()
+                                .stroke(
+                                    LinearGradient(
+                                        gradient: Gradient(colors: [Color.green, Color.blue, Color.red]),
+                                        startPoint: .topTrailing,
+                                        endPoint: .bottomLeading
+                                    ),
+                                    style: StrokeStyle(lineWidth: 20)
+                                )
+                                .frame(width: 100, height: 100)
+                            Text("\(vm.results.count)")
+                                .font(.title)
+                                .bold()
+                        }
+                        .padding()
+                        Text("Passed tests")
+                            
+                    }
+                    
+                }
+            }
+            
+            Section(header: Text("Your last results")) {
+                ForEach(vm.results, id: \.id) { result in
+                    HStack {
+                        Text("\(result.result)/\(result.tests)")
+                        Spacer()
+                        Text("\(result.timestamp.formatted(date: .numeric, time: .shortened))")
+                        
+                    }
+                }
+            }
+        }
+        .onAppear {
+            vm.getResult()
         }
     }
 }

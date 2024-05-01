@@ -54,7 +54,7 @@ class MainViewModel: ObservableObject {
         case 0:
             return "Topics"
         case 1:
-            return "Tasks"
+            return "Tests"
         case 2:
             return "Settings"
         default:

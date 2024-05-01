@@ -30,10 +30,10 @@ struct MainView: View {
                     }
                     .tag(0)
                     
-                TasksView()
+                TestsListView()
                     .tabItem {
                         Image(systemName: "pencil.and.list.clipboard")
-                        Text("Tasks")
+                        Text("Tests")
                     }
                     .tag(1)
                 

@@ -20,11 +20,12 @@
 		0F03CE832B8FB3E300DEC678 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 0F03CE822B8FB3E300DEC678 /* FirebaseStorage */; };
 		0F03CE852B8FB3EA00DEC678 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0F03CE842B8FB3EA00DEC678 /* FirebaseFirestoreSwift */; };
 		0F03CE882B8FC9A100DEC678 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F03CE872B8FC9A100DEC678 /* MainViewModel.swift */; };
-		0F04A6362BBC07A300E1EFE5 /* TasksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F04A6352BBC07A300E1EFE5 /* TasksView.swift */; };
+		0F04A6362BBC07A300E1EFE5 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F04A6352BBC07A300E1EFE5 /* TestView.swift */; };
 		0F04A63A2BBC0E1400E1EFE5 /* aaa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F04A6392BBC0E1400E1EFE5 /* aaa.swift */; };
-		0F2C66632BE10A9300EB5AB1 /* TaskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C66622BE10A9300EB5AB1 /* TaskViewModel.swift */; };
 		0F2C66652BE26BC300EB5AB1 /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C66642BE26BC200EB5AB1 /* ResultsView.swift */; };
 		0F2C66672BE26C5E00EB5AB1 /* ResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C66662BE26C5E00EB5AB1 /* ResultsViewModel.swift */; };
+		0F2C66692BE3F5E400EB5AB1 /* RingChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C66682BE3F5E400EB5AB1 /* RingChart.swift */; };
+		0F2C666F2BE6A09900EB5AB1 /* TestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C666E2BE6A09900EB5AB1 /* TestViewModel.swift */; };
 		0F37F1FE2B8F57F300F3BE1A /* LearningEnglishAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F37F1FD2B8F57F300F3BE1A /* LearningEnglishAppApp.swift */; };
 		0F37F2002B8F57F300F3BE1A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F37F1FF2B8F57F300F3BE1A /* LoginView.swift */; };
 		0F37F2022B8F57F400F3BE1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F37F2012B8F57F400F3BE1A /* Assets.xcassets */; };
@@ -34,7 +35,6 @@
 		0F5479E02B974B9E00B5E7EC /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5479DF2B974B9E00B5E7EC /* SettingsViewModel.swift */; };
 		0FB435072BA97DE500CC10BA /* TopicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB435062BA97DE500CC10BA /* TopicView.swift */; };
 		0FB435092BA99B2C00CC10BA /* TopicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB435082BA99B2C00CC10BA /* TopicViewModel.swift */; };
-		0FE5FAE42BDAC60600B49072 /* TaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE5FAE32BDAC60600B49072 /* TaskView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,11 +42,12 @@
 		0F03CE792B8F5FBC00DEC678 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		0F03CE7E2B8F62CD00DEC678 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		0F03CE872B8FC9A100DEC678 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
-		0F04A6352BBC07A300E1EFE5 /* TasksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TasksView.swift; sourceTree = "<group>"; };
+		0F04A6352BBC07A300E1EFE5 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 		0F04A6392BBC0E1400E1EFE5 /* aaa.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aaa.swift; sourceTree = "<group>"; };
-		0F2C66622BE10A9300EB5AB1 /* TaskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskViewModel.swift; sourceTree = "<group>"; };
 		0F2C66642BE26BC200EB5AB1 /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
 		0F2C66662BE26C5E00EB5AB1 /* ResultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewModel.swift; sourceTree = "<group>"; };
+		0F2C66682BE3F5E400EB5AB1 /* RingChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingChart.swift; sourceTree = "<group>"; };
+		0F2C666E2BE6A09900EB5AB1 /* TestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewModel.swift; sourceTree = "<group>"; };
 		0F37F1FA2B8F57F300F3BE1A /* LearningEnglishApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearningEnglishApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F37F1FD2B8F57F300F3BE1A /* LearningEnglishAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningEnglishAppApp.swift; sourceTree = "<group>"; };
 		0F37F1FF2B8F57F300F3BE1A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -57,7 +58,6 @@
 		0F5479DF2B974B9E00B5E7EC /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		0FB435062BA97DE500CC10BA /* TopicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicView.swift; sourceTree = "<group>"; };
 		0FB435082BA99B2C00CC10BA /* TopicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewModel.swift; sourceTree = "<group>"; };
-		0FE5FAE32BDAC60600B49072 /* TaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,9 +99,8 @@
 		0F04A6342BBC077A00E1EFE5 /* Tasks */ = {
 			isa = PBXGroup;
 			children = (
-				0F04A6352BBC07A300E1EFE5 /* TasksView.swift */,
-				0FE5FAE32BDAC60600B49072 /* TaskView.swift */,
-				0F2C66622BE10A9300EB5AB1 /* TaskViewModel.swift */,
+				0F04A6352BBC07A300E1EFE5 /* TestView.swift */,
+				0F2C666E2BE6A09900EB5AB1 /* TestViewModel.swift */,
 			);
 			path = Tasks;
 			sourceTree = "<group>";
@@ -156,6 +155,7 @@
 				0F5479DF2B974B9E00B5E7EC /* SettingsViewModel.swift */,
 				0F2C66642BE26BC200EB5AB1 /* ResultsView.swift */,
 				0F2C66662BE26C5E00EB5AB1 /* ResultsViewModel.swift */,
+				0F2C66682BE3F5E400EB5AB1 /* RingChart.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -256,17 +256,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F5479DE2B974B9000B5E7EC /* SettingsView.swift in Sources */,
-				0F2C66632BE10A9300EB5AB1 /* TaskViewModel.swift in Sources */,
+				0F2C666F2BE6A09900EB5AB1 /* TestViewModel.swift in Sources */,
 				0F03CE7A2B8F5FBC00DEC678 /* Model.swift in Sources */,
 				0FB435072BA97DE500CC10BA /* TopicView.swift in Sources */,
-				0F04A6362BBC07A300E1EFE5 /* TasksView.swift in Sources */,
+				0F04A6362BBC07A300E1EFE5 /* TestView.swift in Sources */,
 				0F03CE772B8F5E7F00DEC678 /* FirebaseManager.swift in Sources */,
 				0FB435092BA99B2C00CC10BA /* TopicViewModel.swift in Sources */,
 				0F37F2002B8F57F300F3BE1A /* LoginView.swift in Sources */,
-				0FE5FAE42BDAC60600B49072 /* TaskView.swift in Sources */,
 				0F03CE7F2B8F62CD00DEC678 /* MainView.swift in Sources */,
 				0F37F1FE2B8F57F300F3BE1A /* LearningEnglishAppApp.swift in Sources */,
 				0F03CE882B8FC9A100DEC678 /* MainViewModel.swift in Sources */,
+				0F2C66692BE3F5E400EB5AB1 /* RingChart.swift in Sources */,
 				0F5479E02B974B9E00B5E7EC /* SettingsViewModel.swift in Sources */,
 				0F2C66652BE26BC300EB5AB1 /* ResultsView.swift in Sources */,
 				0F04A63A2BBC0E1400E1EFE5 /* aaa.swift in Sources */,

@@ -48,7 +48,7 @@ struct aaa: View {
     @ViewBuilder
     func CardView(_ item: Item) -> some View {
         NavigationLink {
-            TopicView()
+//            TopicView()
         } label: {
             ZStack {
                 RoundedRectangle(cornerRadius: 15)
