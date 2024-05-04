@@ -32,19 +32,3 @@ struct RingChart: View {
         }
     }
 }
-
-
-struct ContentView: View {
-    var body: some View {
-        VStack {
-            RingChart(percentage: 90) // Пример с 75%
-                .padding()
-        }
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}

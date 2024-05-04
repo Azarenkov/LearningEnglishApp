@@ -19,11 +19,6 @@ struct Topic: Identifiable, Codable {
     var title, text, russian: String
 }
 
-struct Tasks: Identifiable, Codable {
-    @DocumentID var id: String?
-    var text, answer: String
-}
-
 struct Privacy: Identifiable, Codable {
     @DocumentID var id: String?
     var text, text2: String

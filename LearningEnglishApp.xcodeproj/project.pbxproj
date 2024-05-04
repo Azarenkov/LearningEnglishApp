@@ -26,6 +26,9 @@
 		0F2C66672BE26C5E00EB5AB1 /* ResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C66662BE26C5E00EB5AB1 /* ResultsViewModel.swift */; };
 		0F2C66692BE3F5E400EB5AB1 /* RingChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C66682BE3F5E400EB5AB1 /* RingChart.swift */; };
 		0F2C666F2BE6A09900EB5AB1 /* TestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C666E2BE6A09900EB5AB1 /* TestViewModel.swift */; };
+		0F2C66712BE6BEFF00EB5AB1 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C66702BE6BEFF00EB5AB1 /* LoginViewModel.swift */; };
+		0F2C66752BE6C82800EB5AB1 /* AdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C66742BE6C82800EB5AB1 /* AdminView.swift */; };
+		0F2C66772BE6DAF200EB5AB1 /* AdminViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C66762BE6DAF200EB5AB1 /* AdminViewModel.swift */; };
 		0F37F1FE2B8F57F300F3BE1A /* LearningEnglishAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F37F1FD2B8F57F300F3BE1A /* LearningEnglishAppApp.swift */; };
 		0F37F2002B8F57F300F3BE1A /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F37F1FF2B8F57F300F3BE1A /* LoginView.swift */; };
 		0F37F2022B8F57F400F3BE1A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F37F2012B8F57F400F3BE1A /* Assets.xcassets */; };
@@ -48,6 +51,9 @@
 		0F2C66662BE26C5E00EB5AB1 /* ResultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewModel.swift; sourceTree = "<group>"; };
 		0F2C66682BE3F5E400EB5AB1 /* RingChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingChart.swift; sourceTree = "<group>"; };
 		0F2C666E2BE6A09900EB5AB1 /* TestViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewModel.swift; sourceTree = "<group>"; };
+		0F2C66702BE6BEFF00EB5AB1 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		0F2C66742BE6C82800EB5AB1 /* AdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminView.swift; sourceTree = "<group>"; };
+		0F2C66762BE6DAF200EB5AB1 /* AdminViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminViewModel.swift; sourceTree = "<group>"; };
 		0F37F1FA2B8F57F300F3BE1A /* LearningEnglishApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LearningEnglishApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F37F1FD2B8F57F300F3BE1A /* LearningEnglishAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningEnglishAppApp.swift; sourceTree = "<group>"; };
 		0F37F1FF2B8F57F300F3BE1A /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -105,6 +111,24 @@
 			path = Tasks;
 			sourceTree = "<group>";
 		};
+		0F2C66722BE6C16A00EB5AB1 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				0F37F1FF2B8F57F300F3BE1A /* LoginView.swift */,
+				0F2C66702BE6BEFF00EB5AB1 /* LoginViewModel.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		0F2C66732BE6C50000EB5AB1 /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+				0F2C66742BE6C82800EB5AB1 /* AdminView.swift */,
+				0F2C66762BE6DAF200EB5AB1 /* AdminViewModel.swift */,
+			);
+			path = Admin;
+			sourceTree = "<group>";
+		};
 		0F37F1F12B8F57F300F3BE1A = {
 			isa = PBXGroup;
 			children = (
@@ -128,7 +152,8 @@
 				0F03CE762B8F5E7F00DEC678 /* FirebaseManager.swift */,
 				0F37F1FD2B8F57F300F3BE1A /* LearningEnglishAppApp.swift */,
 				0F03CE792B8F5FBC00DEC678 /* Model.swift */,
-				0F37F1FF2B8F57F300F3BE1A /* LoginView.swift */,
+				0F2C66722BE6C16A00EB5AB1 /* Login */,
+				0F2C66732BE6C50000EB5AB1 /* Admin */,
 				0F03CE862B8FC98500DEC678 /* Main */,
 				0FB435052BA97D9E00CC10BA /* Topics */,
 				0F04A6342BBC077A00E1EFE5 /* Tasks */,
@@ -263,14 +288,17 @@
 				0F03CE772B8F5E7F00DEC678 /* FirebaseManager.swift in Sources */,
 				0FB435092BA99B2C00CC10BA /* TopicViewModel.swift in Sources */,
 				0F37F2002B8F57F300F3BE1A /* LoginView.swift in Sources */,
+				0F2C66752BE6C82800EB5AB1 /* AdminView.swift in Sources */,
 				0F03CE7F2B8F62CD00DEC678 /* MainView.swift in Sources */,
 				0F37F1FE2B8F57F300F3BE1A /* LearningEnglishAppApp.swift in Sources */,
+				0F2C66712BE6BEFF00EB5AB1 /* LoginViewModel.swift in Sources */,
 				0F03CE882B8FC9A100DEC678 /* MainViewModel.swift in Sources */,
 				0F2C66692BE3F5E400EB5AB1 /* RingChart.swift in Sources */,
 				0F5479E02B974B9E00B5E7EC /* SettingsViewModel.swift in Sources */,
 				0F2C66652BE26BC300EB5AB1 /* ResultsView.swift in Sources */,
 				0F04A63A2BBC0E1400E1EFE5 /* aaa.swift in Sources */,
 				0F2C66672BE26C5E00EB5AB1 /* ResultsViewModel.swift in Sources */,
+				0F2C66772BE6DAF200EB5AB1 /* AdminViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,10 +9,6 @@ import SwiftUI
 
 struct MainView: View {
     
-//    init() {
-//        UITabBar.appearance().backgroundColor = .systemGray6
-//    }
-    
     @ObservedObject private var vm = MainViewModel()
     
     @State var shouldShowTopicView = false
@@ -44,21 +40,6 @@ struct MainView: View {
                     }
                     .tag(2)
             }
-//            .actionSheet(isPresented: $shouldShowLogOutOptions) {
-//                .init(title: Text("Settings"), message: Text("What do you want to do?"), buttons: [
-//                    .destructive(Text("Sign out"), action: {
-//                        print("handle sign out")
-//                        vm.handleSignOut()
-//                        shouldShowLoginView.toggle()
-//                    }),
-//                    .cancel()
-//                ])
-//            }
-//            
-//            .fullScreenCover(isPresented: $shouldShowLoginView) {
-//                LoginView()
-//            }
-            
             .navigationTitle(vm.navigationTitle(for: selectedTab))
         }
     }

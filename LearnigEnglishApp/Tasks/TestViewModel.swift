@@ -82,7 +82,7 @@ class TestsViewModel: ObservableObject {
         
         let resultData = [
             "result": result,
-            "tests": tests.count,
+            "tests": testItems.count,
             "uid": uid,
             "timestamp": timestamp
         ] as [String: Any]
