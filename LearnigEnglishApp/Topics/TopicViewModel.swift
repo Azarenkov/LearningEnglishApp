@@ -10,38 +10,34 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 class TopicViewModel: ObservableObject {
-    
-//    @Published var topic: Topic?
     @Published var topics: [Topic] = []
     
     init() {
-        getTopic()
+        getTopics()
     }
-    
-    func getTopic() {
+
+    func getTopics() {
         let docRef = FirebaseManager.shared.firestore.collection("topics")
-        
-        docRef.addSnapshotListener { querySnapshot, error in
-                if let error = error {
-                    print("Error fetching documents: \(error)")
-                    return
+        docRef.getDocuments { querySnapshot, error in
+            if let error = error {
+                print("Error getting documents: \(error)")
+            } else {
+                var fetchedTopics: [Topic] = []
+                for document in querySnapshot?.documents ?? [] {
+                    print("Document data: \(document.data())")  
+                    let data = document.data()
+                    let id = document.documentID
+                    let title = data["title"] as? String ?? ""
+                    let text = data["text"] as? String ?? ""
+                    let russian = data["russian"] as? String ?? ""
+                    let topic = Topic(id: id, title: title, text: text, russian: russian)
+                    fetchedTopics.append(topic)
                 }
-                
-                guard let documents = querySnapshot?.documents else {
-                    print("No documents")
-                    return
-                }
-                
-                self.topics = documents.compactMap { document in
-                    do {
-                        var resultData = try document.data(as: Topic.self)
-                        resultData.id = document.documentID
-                        return resultData
-                    } catch {
-                        print("Error decoding task: \(error)")
-                        return nil
-                    }
+                DispatchQueue.main.async {
+                    self.topics = fetchedTopics
+                    print("Fetched topics count: \(fetchedTopics.count)")
                 }
             }
+        }
     }
 }

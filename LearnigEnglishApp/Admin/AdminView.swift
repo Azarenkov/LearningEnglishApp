@@ -35,7 +35,7 @@ struct AdminView: View {
                 .padding()
                 
                 NavigationLink {
-                    
+                    AdminTestView()
                 } label: {
                     ZStack {
                         Rectangle()
@@ -69,52 +69,47 @@ struct AdminView: View {
 }
 
 struct AdminTopicView: View {
-    
     @ObservedObject var vm = AdminTopicViewModel()
-    
     @Environment(\.presentationMode) var presentationMode
-    
+
     var body: some View {
-        VStack {
-            
-            HStack {
+        ScrollView {
+            Group {
                 Text("Заголовок на английском")
                     .font(.headline)
-                Spacer()
+                TextField("Введите заголовок", text: $vm.title)
+                    .padding(.vertical, 10)
+                    .padding(.horizontal)
+                    .background(Color(.systemGray6))
+                    .cornerRadius(15)
+                    .shadow(radius: 4)
+                    .padding()
             }
-            .padding(.horizontal)
             
-            TextEditor(text: $vm.title)
-                .frame(height: 38)
-                .border(Color.gray, width: 3)
-                .cornerRadius(6)
-                .padding()
-            
-            HStack {
+            Group {
                 Text("Тема для изучения на английском")
                     .font(.headline)
-                Spacer()
+                TextField("Введите тему на английском", text: $vm.text)
+                    .padding(.vertical, 10)
+                    .padding(.horizontal)
+                    .background(Color(.systemGray6))
+                    .cornerRadius(15)
+                    .shadow(radius: 4)
+                    .padding()
             }
-            .padding(.horizontal)
             
-            TextEditor(text: $vm.text)
-                .frame(height: 180)
-                .border(Color.gray, width: 3)
-                .cornerRadius(6)
-                .padding()
-            
-            HStack {
+            Group {
                 Text("Тема для изучения на русском")
                     .font(.headline)
-                Spacer()
+                TextField("Введите тему на русском", text: $vm.russian)
+                    .padding(.vertical, 10)
+                    .padding(.horizontal)
+                    .background(Color(.systemGray6))
+                    .cornerRadius(15)
+                    .shadow(radius: 4)
+                    .padding()
             }
-            .padding(.horizontal)
             
-            TextEditor(text: $vm.russian)
-                .frame(height: 180)
-                .border(Color.gray, width: 3)
-                .cornerRadius(6)
-                .padding()
             
             Button {
                 vm.storeTopicInformation()
@@ -122,18 +117,109 @@ struct AdminTopicView: View {
                 Text("Сохранить")
             }
             .buttonStyle(.borderedProminent)
+            .padding()
         }
+        .padding()
         .alert(isPresented: $vm.showAlert) {
-            Alert(title: Text("Уведомление"), message: Text(vm.alertMessage), dismissButton: .default(Text("OK"), action: {
-                presentationMode.wrappedValue.dismiss()
-            }))
+            Alert(
+                title: Text("Уведомление"),
+                message: Text(vm.alertMessage),
+                dismissButton: .default(Text("OK"), action: {
+                    presentationMode.wrappedValue.dismiss()
+                })
+            )
         }
-
-        
+        .navigationBarTitle("Тема для изучения")
     }
 }
 
-#Preview {
-    AdminView()
-//    AdminTopicView()
+import SwiftUI
+
+struct AdminTestView: View {
+    @ObservedObject var viewModel = AdminViewModel()
+    @State private var title: String = ""
+    @State private var questionText: String = ""
+    @State private var answer: String = ""
+    @State private var currentTest: String = ""
+    @State private var message: String?
+
+    var body: some View {
+        ScrollView {
+            TextField("Заголовок", text: $title)
+                .padding(.vertical, 10)
+                .padding(.horizontal)
+                .background(Color(.systemGray6))
+                .cornerRadius(15)
+                .shadow(radius: 4)
+                .padding()
+
+            Button("Создать тест") {
+                if title.isEmpty {
+                    message = "Please enter a test title"
+                } else {
+                    viewModel.addTest(title: title)
+                    currentTest = title
+                    title = ""
+                    message = "Тест создан"
+                }
+            }
+            .padding()
+            .background(Color.green)
+            .foregroundColor(.white)
+            .cornerRadius(10)
+            .padding()
+
+            Divider().padding(.vertical)
+
+            if !currentTest.isEmpty {
+                TextField("Задание", text: $questionText)
+                    .padding(.vertical, 10)
+                    .padding(.horizontal)
+                    .background(Color(.systemGray6))
+                    .cornerRadius(15)
+                    .shadow(radius: 4)
+                    .padding()
+                
+                TextField("Ответ", text: $answer)
+                    .padding(.vertical, 10)
+                    .padding(.horizontal)
+                    .background(Color(.systemGray6))
+                    .cornerRadius(15)
+                    .shadow(radius: 4)
+                    .padding()
+
+                Button("Сохранить данные в \(currentTest)") {
+                    if questionText.isEmpty || answer.isEmpty {
+                        message = "Заполните все поля"
+                    } else {
+                        viewModel.addQuestion(toTest: currentTest, text: questionText, answer: answer)
+                        questionText = ""
+                        answer = ""
+                        message = "Задание сохранено в \(currentTest)!"
+                    }
+                }
+                .padding()
+                .background(Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(10)
+            }
+
+            if let message = message {
+                Text(message)
+                    .foregroundColor(.red)
+                    .padding()
+            }
+
+            Spacer()
+        }
+        .navigationBarTitle("Тест")
+        .padding()
+    }
 }
+
+struct AdminView_Previews: PreviewProvider {
+    static var previews: some View {
+        AdminView()
+    }
+}
+

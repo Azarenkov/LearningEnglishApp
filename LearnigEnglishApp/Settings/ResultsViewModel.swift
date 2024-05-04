@@ -44,11 +44,10 @@ class ResultsViewModel: ObservableObject {
     }
     
     private func calculateAverageScore() {
-        // Вычисление общего количества результатов и общего количества пройденных тестов
+        
         let totalResults = results.reduce(0) { $0 + $1.result }
         let totalTasks = results.reduce(0) { $0 + $1.tests }
         
-        // Если общее количество пройденных тестов больше нуля, вычисляем средний балл
         if totalTasks > 0 {
             averageScore = Double(totalResults) / Double(totalTasks)
         } else {

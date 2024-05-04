@@ -17,61 +17,59 @@ struct SettingsView: View {
     @State var shouldShowLoginView = false
 
     var body: some View {
-//        NavigationView {
-            Form {
+        Form {
+            
+            Section(header: Text("Information")) {
                 
-                Section(header: Text("Information")) {
-                    
-                    NavigationLink {
-                        ProfileView()
-                            .navigationTitle("Profile")
-                    } label: {
-                        Image(systemName: "person.fill")
-                        Text("Profile")
-                    }
-                    
-                    NavigationLink {
-                        ResultsView()
-                            .navigationTitle("Your statistics")
-                    } label: {
-                        Image(systemName: "medal")
-                        Text("Results")
-                    }
-                    
-                    
-                    NavigationLink {
-                        PrivacyView()
-                            .navigationTitle("Privacy & Security")
-                    } label: {
-                        Image(systemName: "info.circle")
-                        Text("Privacy & Security")
-                    }
+                NavigationLink {
+                    ProfileView()
+                        .navigationTitle("Profile")
+                } label: {
+                    Image(systemName: "person.fill")
+                    Text("Profile")
                 }
                 
-                Section {
-                    Button {
-                        //                        vm.handleSignOut()
-                        shouldShowLogOutOptions.toggle()
-                    } label: {
-                        Text("Log out")
-                    }
+                NavigationLink {
+                    ResultsView()
+                        .navigationTitle("Your statistics")
+                } label: {
+                    Image(systemName: "medal")
+                    Text("Results")
                 }
-            }
-            .actionSheet(isPresented: $shouldShowLogOutOptions) {
-                .init(title: Text("Settings"), message: Text("What do you want to do?"), buttons: [
-                    .destructive(Text("Sign out"), action: {
-                        print("handle sign out")
-                        vm.handleSignOut()
-                        shouldShowLoginView.toggle()
-                    }),
-                    .cancel()
-                ])
+                
+                
+                NavigationLink {
+                    PrivacyView()
+                        .navigationTitle("Privacy & Security")
+                } label: {
+                    Image(systemName: "info.circle")
+                    Text("Privacy & Security")
+                }
             }
             
-            .fullScreenCover(isPresented: $shouldShowLoginView) {
-                LoginView()
+            Section {
+                Button {
+                    //                        vm.handleSignOut()
+                    shouldShowLogOutOptions.toggle()
+                } label: {
+                    Text("Log out")
+                }
             }
-//        }
+        }
+        .actionSheet(isPresented: $shouldShowLogOutOptions) {
+            .init(title: Text("Settings"), message: Text("What do you want to do?"), buttons: [
+                .destructive(Text("Sign out"), action: {
+                    print("handle sign out")
+                    vm.handleSignOut()
+                    shouldShowLoginView.toggle()
+                }),
+                .cancel()
+            ])
+        }
+        
+        .fullScreenCover(isPresented: $shouldShowLoginView) {
+            LoginView()
+        }
     }
 }
 

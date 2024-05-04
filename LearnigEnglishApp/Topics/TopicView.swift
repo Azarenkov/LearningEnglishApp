@@ -8,36 +8,62 @@
 import SwiftUI
 
 struct TopicsView: View {
-    
     @ObservedObject private var vm = TopicViewModel()
-    
+    @State private var currentIndex = 0
+
+    let colors: [Color] = [Color.blue, Color.green, Color.orange, Color.purple, Color.pink, Color.red, Color.yellow]
+
     var body: some View {
-            ScrollView {
-                ForEach(vm.topics, id: \.id) { topic in
-                    NavigationLink(destination: TopicDetailView(topic: topic)) {
-                        VStack {
-                            ZStack {
-                                Rectangle()
-                                    .fill(LinearGradient(
-                                        gradient: Gradient(colors: [Color.purple, Color.red, Color.yellow, Color.blue, Color.green]),
-                                        startPoint: .topLeading,
-                                        endPoint: .bottomTrailing))
-                                    .frame(width: 280, height: 150)
-                                    .cornerRadius(15)
-                                Text(topic.title)
-                                    .foregroundStyle(.white)
-                                    .font(.system(size: 20, weight: .light, design: .monospaced))
-                                    .frame(width: 150)
-                            }
+        VStack {
+            VStack {
+                if vm.topics.isEmpty {
+                    ProgressView()
+                } else {
+                    
+                    Spacer()
+                    
+                    TabView(selection: $currentIndex) {
+                        ForEach(Array(vm.topics.enumerated()), id: \.element.id) { index, topic in
+                            CardView(topic, color: colors[index % colors.count])
+                                .padding(.horizontal, 40)
+                                .tag(index)
                         }
-                        .padding()
-                        .shadow(radius: 10)
                     }
-                }           
+                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                    .frame(height: 420)
+                    
+                    Spacer()
+
+                    ProgressView(value: Double(currentIndex + 1), total: Double(vm.topics.count))
+                        .progressViewStyle(LinearProgressViewStyle(tint: .blue))
+                        .padding(.horizontal, 100)
+                    
+                    Spacer()
+                }
             }
             .onAppear {
-                vm.getTopic()
+                vm.getTopics()
             }
+        }
+    }
+
+    @ViewBuilder
+    func CardView(_ topic: Topic, color: Color) -> some View {
+        NavigationLink(destination: TopicDetailView(topic: topic)) {
+            ZStack {
+                RoundedRectangle(cornerRadius: 15)
+                    .fill(color)
+                    .shadow(radius: 10)
+                Text(topic.title)
+                    .foregroundStyle(.white)
+                    .font(.title2.bold())
+                    .shadow(radius: 5)
+                    .padding()
+            }
+            .frame(width: 280, height: 350)
+            .cornerRadius(15)
+            .shadow(radius: 10)
+        }
     }
 }
 

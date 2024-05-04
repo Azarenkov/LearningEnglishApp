@@ -8,17 +8,20 @@
 import FirebaseFirestoreSwift
 import SwiftUI
 import FirebaseFirestore
+import Firebase
+
 
 struct User: Codable, Identifiable {
     @DocumentID var id: String?
     var uid, email, nickname: String
 }
 
-struct Topic: Identifiable, Codable {
-    @DocumentID var id: String?
-    var title, text, russian: String
+struct Topic: Identifiable {
+    var id: String
+    var title: String
+    var text: String
+    var russian: String
 }
-
 struct Privacy: Identifiable, Codable {
     @DocumentID var id: String?
     var text, text2: String
@@ -42,25 +45,11 @@ struct Test: Identifiable {
     var title: String
 }
 
-struct Item: Identifiable {
-    var id: UUID = .init()
-    var color: Color
-}
-
-var items: [Item] = [
-    .init(color: .blue),
-    .init(color: .red),
-    .init(color: .green),
-    .init(color: .yellow),
-    .init(color: .purple)
-]
-
-extension [Item] {
-    func zIndex(_ item: Item) -> CGFloat {
-        if let index = firstIndex(where: { $0.id == item.id }) {
+extension [Topic] {
+    func zIndex(_ topic: Topic) -> CGFloat {
+        if let index = firstIndex(where: { $0.id == topic.id }) {
             return CGFloat(count) - CGFloat(index)
         }
-        
         return .zero
     }
 }

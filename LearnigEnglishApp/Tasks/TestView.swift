@@ -9,35 +9,62 @@ import SwiftUI
 
 struct TestsListView: View {
     @ObservedObject var viewModel = TestsViewModel()
+    @State private var currentIndex = 0
+
+    let colors: [Color] = [Color.yellow, Color.red, Color.pink, Color.purple, Color.orange, Color.green, Color.blue]
 
     var body: some View {
-        ScrollView {
-            ForEach(viewModel.tests) { test in
-                NavigationLink(destination: TestDetailView(testId: test.id, viewModel: viewModel)) {
-                    VStack {
-                        ZStack {
-                            Rectangle()
-                                .fill(LinearGradient(
-                                    gradient: Gradient(colors: [Color.purple, Color.red, Color.yellow, Color.blue, Color.green]),
-                                    startPoint: .topLeading,
-                                    endPoint: .bottomTrailing))
-                                .frame(width: 280, height: 150)
-                                .cornerRadius(15)
-                            Text(test.title)
-                                .foregroundStyle(.white)
-                                .font(.system(size: 20, weight: .light, design: .monospaced))
-                                .frame(width: 150)
-                        }
+        VStack {
+            if viewModel.tests.isEmpty {
+                ProgressView()
+            } else {
+                
+                Spacer()
+                
+                TabView(selection: $currentIndex) {
+                    ForEach(Array(viewModel.tests.enumerated()), id: \.element.id) { index, test in
+                        CardView(test, color: colors[index % colors.count])
+                            .padding(.horizontal, 40)
+                            .tag(index)
                     }
-                    .padding()
-                    .shadow(radius: 10)
                 }
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                .frame(height: 420)
+                
+                Spacer()
+
+                ProgressView(value: Double(currentIndex + 1), total: Double(viewModel.tests.count))
+                    .progressViewStyle(LinearProgressViewStyle(tint: .blue))
+                    .padding(.horizontal, 100)
+                
+                Spacer()
             }
+        }
+        .onAppear {
+            viewModel.fetchTestList()
+        }
+    }
+
+    @ViewBuilder
+    func CardView(_ test: Test, color: Color) -> some View {
+        NavigationLink(destination: TestDetailView(testId: test.id, viewModel: viewModel)) {
+            ZStack {
+                RoundedRectangle(cornerRadius: 15)
+                    .fill(color)
+                    .shadow(radius: 10)
+                Text(test.title)
+                    .foregroundStyle(.white)
+                    .font(.title2.bold())
+                    .shadow(radius: 5)
+                    .padding()
+            }
+            .frame(width: 280, height: 350)
+            .cornerRadius(15)
+            .shadow(radius: 10)
         }
     }
 }
 
-// Представление для отображения деталей теста и ответов
 struct TestDetailView: View {
     var testId: String
     @ObservedObject var viewModel: TestsViewModel
@@ -65,7 +92,7 @@ struct TestDetailView: View {
 
             Button(action: {
                 viewModel.checkAnswer(userAnswer: userAnswer)
-                userAnswer = "" // Сбросить поле ответа после проверки
+                userAnswer = "" 
             }) {
                 Text(">")
                     .frame(width: 50, height: 50)

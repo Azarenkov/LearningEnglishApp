@@ -34,7 +34,6 @@ class TestsViewModel: ObservableObject {
     }
 
     func loadQuestions(testId: String) {
-        // Сбросить предыдущие результаты и очистить список вопросов
         testItems.removeAll()
         result = 0
         showResult = false
@@ -78,7 +77,7 @@ class TestsViewModel: ObservableObject {
     func storeResult(result: Int) {
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }
         
-        let timestamp = Date() // Текущее время
+        let timestamp = Date()
         
         let resultData = [
             "result": result,

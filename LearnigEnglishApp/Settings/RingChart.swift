@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct RingChart: View {
-    var percentage: Double // Процентное значение
+    var percentage: Double 
     
-    private let lineWidth: CGFloat = 20.0 // Ширина кольца
+    private let lineWidth: CGFloat = 20.0
     
     var body: some View {
-        let formattedPercentage = String(format: "%.0f", percentage) // Форматирование процентов
+        let formattedPercentage = String(format: "%.0f", percentage)
         
         return ZStack {
             Circle()
@@ -26,7 +26,7 @@ struct RingChart: View {
                 .frame(width: 100, height: 100)
                 .rotationEffect(Angle(degrees: -90))
             
-            Text("\(formattedPercentage)%") // Отображение процентов
+            Text("\(formattedPercentage)%")
                 .font(.title)
                 .fontWeight(.bold)
         }

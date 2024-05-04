@@ -21,7 +21,6 @@
 		0F03CE852B8FB3EA00DEC678 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0F03CE842B8FB3EA00DEC678 /* FirebaseFirestoreSwift */; };
 		0F03CE882B8FC9A100DEC678 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F03CE872B8FC9A100DEC678 /* MainViewModel.swift */; };
 		0F04A6362BBC07A300E1EFE5 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F04A6352BBC07A300E1EFE5 /* TestView.swift */; };
-		0F04A63A2BBC0E1400E1EFE5 /* aaa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F04A6392BBC0E1400E1EFE5 /* aaa.swift */; };
 		0F2C66652BE26BC300EB5AB1 /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C66642BE26BC200EB5AB1 /* ResultsView.swift */; };
 		0F2C66672BE26C5E00EB5AB1 /* ResultsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C66662BE26C5E00EB5AB1 /* ResultsViewModel.swift */; };
 		0F2C66692BE3F5E400EB5AB1 /* RingChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F2C66682BE3F5E400EB5AB1 /* RingChart.swift */; };
@@ -46,7 +45,6 @@
 		0F03CE7E2B8F62CD00DEC678 /* MainView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		0F03CE872B8FC9A100DEC678 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		0F04A6352BBC07A300E1EFE5 /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
-		0F04A6392BBC0E1400E1EFE5 /* aaa.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = aaa.swift; sourceTree = "<group>"; };
 		0F2C66642BE26BC200EB5AB1 /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
 		0F2C66662BE26C5E00EB5AB1 /* ResultsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewModel.swift; sourceTree = "<group>"; };
 		0F2C66682BE3F5E400EB5AB1 /* RingChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RingChart.swift; sourceTree = "<group>"; };
@@ -189,7 +187,6 @@
 			isa = PBXGroup;
 			children = (
 				0FB435062BA97DE500CC10BA /* TopicView.swift */,
-				0F04A6392BBC0E1400E1EFE5 /* aaa.swift */,
 				0FB435082BA99B2C00CC10BA /* TopicViewModel.swift */,
 			);
 			path = Topics;
@@ -296,7 +293,6 @@
 				0F2C66692BE3F5E400EB5AB1 /* RingChart.swift in Sources */,
 				0F5479E02B974B9E00B5E7EC /* SettingsViewModel.swift in Sources */,
 				0F2C66652BE26BC300EB5AB1 /* ResultsView.swift in Sources */,
-				0F04A63A2BBC0E1400E1EFE5 /* aaa.swift in Sources */,
 				0F2C66672BE26C5E00EB5AB1 /* ResultsViewModel.swift in Sources */,
 				0F2C66772BE6DAF200EB5AB1 /* AdminViewModel.swift in Sources */,
 			);

@@ -63,13 +63,11 @@ class LoginViewModel: ObservableObject {
         FirebaseManager.shared.auth.createUser(withEmail: email, password: password) {
             result, err in
             if let err = err {
-//              print("Failed to create user:", err)
                 self.loginStatusMessage = "Failed to create: \(err.localizedDescription)"
                 self.alertMessage = self.loginStatusMessage
                 self.showAlert.toggle()
                 return
             }
-//    print("Successfully created user: \(result?.user.uid ?? "")")
             
             self.storeUserInformation(nickname: self.nickname)
             self.loginStatusMessage = "Successfully created user"
