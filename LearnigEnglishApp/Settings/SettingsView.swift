@@ -119,31 +119,43 @@ struct NameView: View {
     
     var body: some View {
         VStack {
+            
+            Spacer()
+            
             logo
                 .padding(.vertical)
+            
+            Spacer()
+            
             TextField("Name", text: $nickname)
                 .autocapitalization(.none)
                 .padding(.vertical, 10)
                 .padding(.horizontal)
                 .background(Color(.systemGray6))
-                .cornerRadius(8)
+                .cornerRadius(15)
                 .shadow(radius: 4)
                 .padding()
             
             
             Button {
                 vm.updateName(nickname: nickname)
-//                presentationMode.wrappedValue.dismiss()
                 nickname = ""
             } label: {
                 Text("Submit")
             }
             .buttonStyle(.borderedProminent)
+            .shadow(radius: 4)
+            .padding()
             
+            Spacer()
         }
         .alert(isPresented: $vm.showAlert) {
-            Alert(title: Text("Result"), message: Text(vm.errorMessage), dismissButton: .default(Text("OK")))
+            Alert(title: Text("Result"), message: Text(vm.errorMessage), dismissButton: .default(Text("OK"), action: {
+                presentationMode.wrappedValue.dismiss()
+            })
+            )
         }
+        .navigationTitle("Name Changing")
     }
     
     private var logo: some View {
@@ -176,8 +188,13 @@ struct PasswordView: View {
     
     var body: some View {
         VStack {
+            
+            Spacer()
+            
             logo
                 .padding(.vertical)
+            
+            Spacer()
             
             TextField("Password", text: $password)
                 .keyboardType(.emailAddress)
@@ -185,23 +202,29 @@ struct PasswordView: View {
                 .padding(.vertical, 10)
                 .padding(.horizontal)
                 .background(Color(.systemGray6))
-                .cornerRadius(8)
+                .cornerRadius(15)
                 .shadow(radius: 4)
                 .padding()
             
             Button {
                 vm.updatePassword(password: password)
-                //                    presentationMode.wrappedValue.dismiss()
                 password = ""
             } label: {
                 Text("Submit")
             }
             .buttonStyle(.borderedProminent)
+            .shadow(radius: 4)
+            .padding()
+            
+            Spacer()
         }
         
         .alert(isPresented: $vm.showAlert) {
-            Alert(title: Text("Result"), message: Text(vm.errorMessage), dismissButton: .default(Text("OK")))
+            Alert(title: Text("Result"), message: Text(vm.errorMessage), dismissButton: .default(Text("OK"), action: {
+                presentationMode.wrappedValue.dismiss()
+            }))
         }
+        .navigationTitle("Password Changing")
     }
     
     private var logo: some View {
