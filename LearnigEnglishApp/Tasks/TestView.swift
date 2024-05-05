@@ -25,13 +25,13 @@ struct TestsListView: View {
                     ForEach(Array(viewModel.tests.enumerated()), id: \.element.id) { index, test in
                         CardView(test, color: colors[index % colors.count])
                             .padding(.horizontal, 40)
-                            .padding(.bottom, 50)
                             .tag(index)
                     }
                 }
                 .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
                 .frame(height: 420)
                 .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+                .shadow(radius: 10)
                 
                 Spacer()
             }
@@ -47,17 +47,17 @@ struct TestsListView: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 15)
                     .fill(color)
-                    .shadow(radius: 10)
+                    .frame(width: 280, height: 350)
+                    .cornerRadius(15)
+
                 Text(test.title)
                     .foregroundStyle(.white)
                     .font(.title2.bold())
                     .shadow(radius: 5)
                     .padding()
             }
-            .frame(width: 280, height: 350)
-            .cornerRadius(15)
-            .shadow(radius: 10)
         }
+        .padding(.bottom, 70)
     }
 }
 

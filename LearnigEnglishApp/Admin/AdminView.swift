@@ -73,10 +73,15 @@ struct AdminTopicView: View {
     @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
-        ScrollView {
+        VStack {
+            Spacer()
             Group {
-                Text("Заголовок на английском")
-                    .font(.headline)
+                HStack {
+                    Text("Заголовок на английском")
+                        .font(.headline)
+                    Spacer()
+                }
+                .padding(.horizontal)
                 TextField("Введите заголовок", text: $vm.title)
                     .padding(.vertical, 10)
                     .padding(.horizontal)
@@ -85,10 +90,15 @@ struct AdminTopicView: View {
                     .shadow(radius: 4)
                     .padding()
             }
+            Spacer()
             
             Group {
-                Text("Тема для изучения на английском")
-                    .font(.headline)
+                HStack {
+                    Text("Тема для изучения на английском")
+                        .font(.headline)
+                    Spacer()
+                }
+                .padding(.horizontal)
                 TextField("Введите тему на английском", text: $vm.text)
                     .padding(.vertical, 10)
                     .padding(.horizontal)
@@ -97,10 +107,15 @@ struct AdminTopicView: View {
                     .shadow(radius: 4)
                     .padding()
             }
+            Spacer()
             
             Group {
-                Text("Тема для изучения на русском")
-                    .font(.headline)
+                HStack {
+                    Text("Тема для изучения на русском")
+                        .font(.headline)
+                    Spacer()
+                }
+                .padding(.horizontal)
                 TextField("Введите тему на русском", text: $vm.russian)
                     .padding(.vertical, 10)
                     .padding(.horizontal)
@@ -109,6 +124,7 @@ struct AdminTopicView: View {
                     .shadow(radius: 4)
                     .padding()
             }
+            Spacer()
             
             
             Button {
