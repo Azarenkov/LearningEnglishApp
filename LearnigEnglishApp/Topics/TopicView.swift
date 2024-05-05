@@ -26,17 +26,13 @@ struct TopicsView: View {
                         ForEach(Array(vm.topics.enumerated()), id: \.element.id) { index, topic in
                             CardView(topic, color: colors[index % colors.count])
                                 .padding(.horizontal, 40)
+                                .padding(.bottom, 50)
                                 .tag(index)
                         }
                     }
-                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                    .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
                     .frame(height: 420)
-                    
-                    Spacer()
-
-                    ProgressView(value: Double(currentIndex + 1), total: Double(vm.topics.count))
-                        .progressViewStyle(LinearProgressViewStyle(tint: .blue))
-                        .padding(.horizontal, 100)
+                    .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
                     
                     Spacer()
                 }

@@ -196,7 +196,7 @@ struct PasswordView: View {
             
             Spacer()
             
-            TextField("Password", text: $password)
+            SecureField("Password", text: $password)
                 .keyboardType(.emailAddress)
                 .autocapitalization(.none)
                 .padding(.vertical, 10)

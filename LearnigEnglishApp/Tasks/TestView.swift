@@ -25,17 +25,13 @@ struct TestsListView: View {
                     ForEach(Array(viewModel.tests.enumerated()), id: \.element.id) { index, test in
                         CardView(test, color: colors[index % colors.count])
                             .padding(.horizontal, 40)
+                            .padding(.bottom, 50)
                             .tag(index)
                     }
                 }
-                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
+                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .always))
                 .frame(height: 420)
-                
-                Spacer()
-
-                ProgressView(value: Double(currentIndex + 1), total: Double(viewModel.tests.count))
-                    .progressViewStyle(LinearProgressViewStyle(tint: .blue))
-                    .padding(.horizontal, 100)
+                .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
                 
                 Spacer()
             }
