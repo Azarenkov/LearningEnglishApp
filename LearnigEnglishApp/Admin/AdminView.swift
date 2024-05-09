@@ -83,6 +83,7 @@ struct AdminTopicView: View {
                 }
                 .padding(.horizontal)
                 TextField("Введите заголовок", text: $vm.title)
+                    .autocapitalization(.none)
                     .padding(.vertical, 10)
                     .padding(.horizontal)
                     .background(Color(.systemGray6))
@@ -100,6 +101,7 @@ struct AdminTopicView: View {
                 }
                 .padding(.horizontal)
                 TextField("Введите тему на английском", text: $vm.text)
+                    .autocapitalization(.none)
                     .padding(.vertical, 10)
                     .padding(.horizontal)
                     .background(Color(.systemGray6))
@@ -117,6 +119,7 @@ struct AdminTopicView: View {
                 }
                 .padding(.horizontal)
                 TextField("Введите тему на русском", text: $vm.russian)
+                    .autocapitalization(.none)
                     .padding(.vertical, 10)
                     .padding(.horizontal)
                     .background(Color(.systemGray6))
@@ -162,6 +165,7 @@ struct AdminTestView: View {
     var body: some View {
         ScrollView {
             TextField("Заголовок", text: $title)
+                .autocapitalization(.none)
                 .padding(.vertical, 10)
                 .padding(.horizontal)
                 .background(Color(.systemGray6))
@@ -189,6 +193,7 @@ struct AdminTestView: View {
 
             if !currentTest.isEmpty {
                 TextField("Задание", text: $questionText)
+                    .autocapitalization(.none)
                     .padding(.vertical, 10)
                     .padding(.horizontal)
                     .background(Color(.systemGray6))
@@ -197,6 +202,7 @@ struct AdminTestView: View {
                     .padding()
                 
                 TextField("Ответ", text: $answer)
+                    .autocapitalization(.none)
                     .padding(.vertical, 10)
                     .padding(.horizontal)
                     .background(Color(.systemGray6))

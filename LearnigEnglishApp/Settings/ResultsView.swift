@@ -53,12 +53,15 @@ struct ResultsView: View {
             }
             
             Section(header: Text("Your last results")) {
-                ForEach(vm.results, id: \.id) { result in
-                    HStack {
-                        Text("\(result.result)/\(result.tests)")
-                        Spacer()
-                        Text("\(result.timestamp.formatted(date: .numeric, time: .shortened))")
-                        
+                if vm.results.isEmpty {
+                    Text("You don't have any results")
+                } else {
+                    ForEach(vm.results, id: \.id) { result in
+                        HStack {
+                            Text("\(result.result)/\(result.tests)")
+                            Spacer()
+                            Text("\(result.timestamp.formatted(date: .numeric, time: .shortened))")
+                        }
                     }
                 }
             }

@@ -142,9 +142,15 @@ struct NameView: View {
                 nickname = ""
             } label: {
                 Text("Submit")
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                    .padding(.horizontal)
+                    .padding(.vertical, 10)
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(100)
             }
-            .buttonStyle(.borderedProminent)
-            .shadow(radius: 4)
+            .shadow(radius: 10)
             .padding()
             
             Spacer()
@@ -211,9 +217,15 @@ struct PasswordView: View {
                 password = ""
             } label: {
                 Text("Submit")
+                    .font(.headline)
+                    .fontWeight(.semibold)
+                    .padding(.horizontal)
+                    .padding(.vertical, 10)
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(100)
             }
-            .buttonStyle(.borderedProminent)
-            .shadow(radius: 4)
+            .shadow(radius: 10)
             .padding()
             
             Spacer()

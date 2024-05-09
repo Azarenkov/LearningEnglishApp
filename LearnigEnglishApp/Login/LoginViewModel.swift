@@ -90,5 +90,5 @@ class LoginViewModel: ObservableObject {
                 }
                 print("success")
             }
-    }    
+    }
 }
