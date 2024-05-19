@@ -37,6 +37,7 @@ struct WelcomeView: View {
                 Spacer()
                 
                 Button {
+                    UserDefaults.standard.welcomeScreenShown = true
                     shouldShowLoginView.toggle()
                 } label: {
                     Text("Start Learning")
@@ -51,9 +52,6 @@ struct WelcomeView: View {
                 .shadow(radius: 10)
                 .padding()
             }
-            .onAppear(perform: {
-                UserDefaults.standard.welcomeScreenShown = true
-            })
             .fullScreenCover(isPresented: $shouldShowLoginView, onDismiss: nil) {
                 LoginView()
             }

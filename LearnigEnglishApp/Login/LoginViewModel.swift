@@ -7,6 +7,9 @@
 
 import Foundation
 import Firebase
+import GoogleSignIn
+import FirebaseAuth
+import FirebaseCore
 
 class LoginViewModel: ObservableObject {
     

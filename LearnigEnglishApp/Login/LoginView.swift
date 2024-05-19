@@ -6,10 +6,18 @@
 //
 
 import SwiftUI
+import GoogleSignIn
+import FirebaseAuth
+import Foundation
+import FirebaseCore
+
 
 struct LoginView: View {
     
     @Environment(\.colorScheme) var colorScheme
+    
+    @AppStorage("shouldShowGoogleInfo")
+    var shouldShowGoogleInfo = false
     
     @AppStorage("welcomeScreenShown")
     var welcomeScreenShown: Bool = false
@@ -60,6 +68,42 @@ struct LoginView: View {
                             .cornerRadius(100)
                     }
                     .shadow(radius: 10)
+                    
+                    Text("Or continue with")
+                        .font(.caption)
+                        .bold()
+                        .padding(.top, 30)
+                        .padding(.bottom, 5)
+                    
+                    GoogleSignInButton {
+                        guard let clientID = FirebaseApp.app()?.options.clientID else { return }
+
+                        let config = GIDConfiguration(clientID: clientID)
+                        GIDSignIn.sharedInstance.configuration = config
+
+                        GIDSignIn.sharedInstance.signIn(withPresenting: getRootViewController()) { result, error in
+                          guard error == nil else {
+                              return
+                          }
+
+                          guard let user = result?.user,
+                            let idToken = user.idToken?.tokenString
+                          else {
+                              return
+                          }
+
+                          let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: user.accessToken.tokenString)
+                            
+                            Auth.auth().signIn(with: credential) { result, error in
+                                guard error == nil else {
+                                    return
+                                }
+                                vm.shouldShowMainView.toggle()
+                                shouldShowGoogleInfo.toggle()
+                                UserDefaults.standard.shouldShowGoogleInfo.toggle()
+                            }
+                        }
+                    }
                 }
                 .padding()
                 .alert(isPresented: $vm.showAlert) {
@@ -132,10 +176,42 @@ struct LoginView: View {
 
 }
 
+extension UserDefaults {
+    var shouldShowGoogleInfo: Bool {
+        get {
+            return (UserDefaults.standard.value(forKey: "shouldShowGoogleInfo") as? Bool) ?? false
+        }
+        set {
+            UserDefaults.standard.setValue(newValue, forKey: "shouldShowGoogleInfo")
+        }
+    }
+}
+
 struct LoginView_Prewiews: PreviewProvider {
     static var previews: some View {
         LoginView(
 
         )
+    }
+}
+
+struct GoogleSignInButton: View {
+    
+    var action: () -> Void
+    var body: some View {
+        Button {
+            action()
+       } label: {
+           ZStack {
+               Image("Google")
+                   .resizable()
+                   .frame(width: 30, height: 30)
+           }
+           .frame(width: 40, height: 40)
+           .background(.white)
+           .cornerRadius(10)
+       }
+       .shadow(radius: 10)
+
     }
 }

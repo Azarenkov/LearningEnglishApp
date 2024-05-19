@@ -8,6 +8,10 @@
 import Foundation
 import Firebase
 import FirebaseFirestoreSwift
+import GoogleSignIn
+import FirebaseAuth
+import Foundation
+import FirebaseCore
 
 class SettingsViewModel: ObservableObject {
     

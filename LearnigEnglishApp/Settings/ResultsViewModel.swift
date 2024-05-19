@@ -6,11 +6,16 @@
 //
 
 import Foundation
+import Firebase
 
 class ResultsViewModel: ObservableObject {
     
     @Published var results: [Results] = []
     @Published var averageScore: Double?
+    
+    init() {
+        getResult()
+    }
     
     func getResult() {
         guard let uid = FirebaseManager.shared.auth.currentUser?.uid else { return }

@@ -10,8 +10,10 @@ import SwiftUI
 struct SettingsView: View {
     
     @ObservedObject private var vm = MainViewModel()
+//    @ObservedObject private var vm2 = LoginViewModel()
     
 //    @Binding var shouldShowLogOutOptions: Bool
+
     
     @State var shouldShowLogOutOptions = false
     @State var shouldShowLoginView = false
@@ -61,6 +63,7 @@ struct SettingsView: View {
                 .destructive(Text("Sign out"), action: {
                     print("handle sign out")
                     vm.handleSignOut()
+                    UserDefaults.standard.shouldShowGoogleInfo.toggle()
                     shouldShowLoginView.toggle()
                 }),
                 .cancel()
@@ -80,30 +83,44 @@ struct ProfileView: View {
     @Environment(\.presentationMode) var presentationMode
         
     var body: some View {
-        Form {
-            Section(header: Text("Email")) {
-                Text(vm.user?.email ?? "-")
-            }
-            
-            Section(header: Text("Name")) {
-                NavigationLink {
-                    NameView()
-                } label: {
-                    Text(vm.user?.nickname ?? "-")
+        VStack {
+            if UserDefaults.standard.shouldShowGoogleInfo {
+                ZStack {
+                    Image("Google")
+                        .resizable()
+                        .frame(width: 75, height: 75)
+                        .padding()
+                }
+                
+                Text("You are loggining with Google Account")
+                    .font(.headline)
+            } else {
+                Form {
+                    Section(header: Text("Email")) {
+                        Text(vm.user?.email ?? "-")
+                    }
+                    
+                    Section(header: Text("Name")) {
+                        NavigationLink {
+                            NameView()
+                        } label: {
+                            Text(vm.user?.nickname ?? "-")
+                        }
+                    }
+                    
+                    Section(header: Text("Password")) {
+                        NavigationLink {
+                            PasswordView()
+                        } label: {
+                            Text("******")
+                        }
+                    }
+                }
+                
+                .onAppear {
+                    vm.fetchCurrentUser()
                 }
             }
-            
-            Section(header: Text("Password")) {
-                NavigationLink {
-                    PasswordView()
-                } label: {
-                    Text("******")
-                }
-            }
-        }
-        
-        .onAppear {
-            vm.fetchCurrentUser()
         }
     }
 }
@@ -285,5 +302,6 @@ struct PrivacyView: View {
 
 
 #Preview {
-    MainView()
+//    MainView()
+    ProfileView()
 }

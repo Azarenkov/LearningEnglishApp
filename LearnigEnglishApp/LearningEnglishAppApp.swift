@@ -10,6 +10,8 @@ import SwiftUI
 @main
 struct LearningEnglishAppApp: App {
     
+    @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    
     @ObservedObject private var vm = MainViewModel()
     
     var body: some Scene {
