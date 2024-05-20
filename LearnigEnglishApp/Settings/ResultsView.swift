@@ -56,7 +56,7 @@ struct ResultsView: View {
                 if vm.results.isEmpty {
                     Text("You don't have any results")
                 } else {
-                    ForEach(vm.results, id: \.id) { result in
+                    ForEach(vm.results) { result in
                         HStack {
                             Text("\(result.result)/\(result.tests)")
                             Spacer()

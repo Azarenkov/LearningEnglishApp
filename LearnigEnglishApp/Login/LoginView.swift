@@ -207,11 +207,15 @@ struct GoogleSignInButton: View {
                    .resizable()
                    .frame(width: 30, height: 30)
            }
-           .frame(width: 40, height: 40)
-           .background(.white)
-           .cornerRadius(10)
+           .frame(width: 70, height: 50)
+           .background(Color.clear)
+           .cornerRadius(15)
+           .overlay(
+            RoundedRectangle(cornerRadius: 15)
+                .stroke(Color(.systemGray), lineWidth: 1.5)
+           )
        }
-       .shadow(radius: 10)
+       .shadow(radius: 0)
 
     }
 }

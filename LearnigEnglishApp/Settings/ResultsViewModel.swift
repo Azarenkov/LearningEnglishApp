@@ -38,6 +38,7 @@ class ResultsViewModel: ObservableObject {
                     do {
                         var resultData = try document.data(as: Results.self)
                         resultData.id = document.documentID
+                        print(resultData)
                         return resultData
                     } catch {
                         print("Error decoding task: \(error)")
