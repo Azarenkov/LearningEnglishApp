@@ -36,6 +36,8 @@
 		0F37F2052B8F57F400F3BE1A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0F37F2042B8F57F400F3BE1A /* Preview Assets.xcassets */; };
 		0F5479DE2B974B9000B5E7EC /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5479DD2B974B9000B5E7EC /* SettingsView.swift */; };
 		0F5479E02B974B9E00B5E7EC /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5479DF2B974B9E00B5E7EC /* SettingsViewModel.swift */; };
+		0F7292A32BFFE2890086DD6E /* SettingsIconGenerator in Frameworks */ = {isa = PBXBuildFile; productRef = 0F7292A22BFFE2890086DD6E /* SettingsIconGenerator */; };
+		0F7292A52BFFFAD30086DD6E /* enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F7292A42BFFFAD30086DD6E /* enums.swift */; };
 		0FB435072BA97DE500CC10BA /* TopicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB435062BA97DE500CC10BA /* TopicView.swift */; };
 		0FB435092BA99B2C00CC10BA /* TopicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB435082BA99B2C00CC10BA /* TopicViewModel.swift */; };
 		0FBC4A972BFB95F100D29570 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0FBC4A962BFB95F100D29570 /* GoogleService-Info.plist */; };
@@ -66,6 +68,7 @@
 		0F37F2042B8F57F400F3BE1A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		0F5479DD2B974B9000B5E7EC /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		0F5479DF2B974B9E00B5E7EC /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		0F7292A42BFFFAD30086DD6E /* enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = enums.swift; sourceTree = "<group>"; };
 		0FB435062BA97DE500CC10BA /* TopicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicView.swift; sourceTree = "<group>"; };
 		0FB435082BA99B2C00CC10BA /* TopicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopicViewModel.swift; sourceTree = "<group>"; };
 		0FBC4A962BFB95F100D29570 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -90,6 +93,7 @@
 				0F2C60A02BED11F600C4E679 /* FirebaseFirestoreSwift in Frameworks */,
 				0F2C608C2BED11F600C4E679 /* FirebaseAnalytics in Frameworks */,
 				0F2C609C2BED11F600C4E679 /* FirebaseFirestore in Frameworks */,
+				0F7292A32BFFE2890086DD6E /* SettingsIconGenerator in Frameworks */,
 				0F2C608E2BED11F600C4E679 /* FirebaseAnalyticsOnDeviceConversion in Frameworks */,
 				0F2C60982BED11F600C4E679 /* FirebaseDatabase in Frameworks */,
 				0F2C60922BED11F600C4E679 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
@@ -115,13 +119,13 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
-		0F04A6342BBC077A00E1EFE5 /* Tasks */ = {
+		0F04A6342BBC077A00E1EFE5 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				0F04A6352BBC07A300E1EFE5 /* TestView.swift */,
 				0F2C666E2BE6A09900EB5AB1 /* TestViewModel.swift */,
 			);
-			path = Tasks;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		0F2C66722BE6C16A00EB5AB1 /* Login */ = {
@@ -171,7 +175,7 @@
 				0F2C66732BE6C50000EB5AB1 /* Admin */,
 				0F03CE862B8FC98500DEC678 /* Main */,
 				0FB435052BA97D9E00CC10BA /* Topics */,
-				0F04A6342BBC077A00E1EFE5 /* Tasks */,
+				0F04A6342BBC077A00E1EFE5 /* Tests */,
 				0F5479DC2B974B6E00B5E7EC /* Settings */,
 				0F37F2012B8F57F400F3BE1A /* Assets.xcassets */,
 				0FBC4A962BFB95F100D29570 /* GoogleService-Info.plist */,
@@ -215,6 +219,7 @@
 				0F03CE762B8F5E7F00DEC678 /* FirebaseManager.swift */,
 				0FBC4A9F2BFB989D00D29570 /* AppDelegate.swift */,
 				0FBC4AA12BFB9ABB00D29570 /* +View.swift */,
+				0F7292A42BFFFAD30086DD6E /* enums.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -249,6 +254,7 @@
 				0F2C609F2BED11F600C4E679 /* FirebaseFirestoreSwift */,
 				0FBC4A992BFB969600D29570 /* GoogleSignIn */,
 				0FBC4A9B2BFB969600D29570 /* GoogleSignInSwift */,
+				0F7292A22BFFE2890086DD6E /* SettingsIconGenerator */,
 			);
 			productName = LearnigEnglishApp;
 			productReference = 0F37F1FA2B8F57F300F3BE1A /* LearningEnglishApp.app */;
@@ -281,6 +287,7 @@
 			packageReferences = (
 				0F2C608A2BED11F600C4E679 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				0FBC4A982BFB969600D29570 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				0F7292A12BFFE2890086DD6E /* XCRemoteSwiftPackageReference "SettingsIconGenerator" */,
 			);
 			productRefGroup = 0F37F1FB2B8F57F300F3BE1A /* Products */;
 			projectDirPath = "";
@@ -319,6 +326,7 @@
 				0F37F2002B8F57F300F3BE1A /* LoginView.swift in Sources */,
 				0FBC4AA02BFB989D00D29570 /* AppDelegate.swift in Sources */,
 				0F2C66752BE6C82800EB5AB1 /* AdminView.swift in Sources */,
+				0F7292A52BFFFAD30086DD6E /* enums.swift in Sources */,
 				0F03CE7F2B8F62CD00DEC678 /* MainView.swift in Sources */,
 				0FBC4AA22BFB9ABB00D29570 /* +View.swift in Sources */,
 				0F37F1FE2B8F57F300F3BE1A /* LearningEnglishAppApp.swift in Sources */,
@@ -549,6 +557,14 @@
 				minimumVersion = 10.25.0;
 			};
 		};
+		0F7292A12BFFE2890086DD6E /* XCRemoteSwiftPackageReference "SettingsIconGenerator" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparrowcode/SettingsIconGenerator";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.2;
+			};
+		};
 		0FBC4A982BFB969600D29570 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/GoogleSignIn-iOS.git";
@@ -614,6 +630,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0F2C608A2BED11F600C4E679 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestoreSwift;
+		};
+		0F7292A22BFFE2890086DD6E /* SettingsIconGenerator */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0F7292A12BFFE2890086DD6E /* XCRemoteSwiftPackageReference "SettingsIconGenerator" */;
+			productName = SettingsIconGenerator;
 		};
 		0FBC4A992BFB969600D29570 /* GoogleSignIn */ = {
 			isa = XCSwiftPackageProductDependency;

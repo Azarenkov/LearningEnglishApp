@@ -79,6 +79,7 @@ struct TestDetailView: View {
 
             TextField("Answer", text: $userAnswer)
                 .autocapitalization(.none)
+                .disableAutocorrection(true)
                 .padding(.vertical, 10)
                 .padding(.horizontal)
                 .background(Color(.systemGray6))

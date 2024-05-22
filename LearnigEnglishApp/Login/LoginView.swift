@@ -16,6 +16,8 @@ struct LoginView: View {
     
     @Environment(\.colorScheme) var colorScheme
     
+    @FocusState private var focus: FormFieldFocus?
+    
     @AppStorage("shouldShowGoogleInfo")
     var shouldShowGoogleInfo = false
     
@@ -130,13 +132,23 @@ struct LoginView: View {
             Group {
                 if !vm.isLoginMode {
                     TextField("Nickame", text: $vm.nickname)
+                        .onSubmit {
+                            focus = .email
+                        }
+                        .focused($focus, equals: .nickname)
+                    
                 }
                 
                 TextField("Email", text: $vm.email)
                     .keyboardType(.emailAddress)
                     .autocapitalization(.none)
+                    .onSubmit {
+                        focus = .password
+                    }
+                    .focused($focus, equals: .email)
                 
                 SecureField("Password", text: $vm.password)
+                    .focused($focus, equals: .password)
             }
             .padding(.vertical, 10)
             .padding(.horizontal)
@@ -173,8 +185,9 @@ struct LoginView: View {
                 .edgesIgnoringSafeArea(.all)
         }
     }
-
+    
 }
+
 
 extension UserDefaults {
     var shouldShowGoogleInfo: Bool {

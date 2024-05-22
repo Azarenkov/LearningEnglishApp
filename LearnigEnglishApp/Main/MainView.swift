@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import SettingsIconGenerator
+
 
 struct MainView: View {
     

@@ -6,14 +6,16 @@
 //
 
 import SwiftUI
+@testable import SettingsIconGenerator
 
 struct SettingsView: View {
-    
     @ObservedObject private var vm = MainViewModel()
 //    @ObservedObject private var vm2 = LoginViewModel()
-    
+//    @Environment(\.colorScheme) var colorScheme
 //    @Binding var shouldShowLogOutOptions: Bool
-
+//    @State var colorMode = false
+    @State private var useSystemSetting = true
+    @State private var selectedScheme: ColorSchemeOption = .system
     
     @State var shouldShowLogOutOptions = false
     @State var shouldShowLoginView = false
@@ -21,13 +23,13 @@ struct SettingsView: View {
     var body: some View {
         Form {
             
-            Section(header: Text("Information")) {
+            Section(header: Text("Information"), footer: Text("Get information about your account and test results.")) {
                 
                 NavigationLink {
                     ProfileView()
                         .navigationTitle("Profile")
                 } label: {
-                    Image(systemName: "person.fill")
+                    SettingsIcon(systemName: "person", backgroundColor: .purple)
                     Text("Profile")
                 }
                 
@@ -35,16 +37,29 @@ struct SettingsView: View {
                     ResultsView()
                         .navigationTitle("Your statistics")
                 } label: {
-                    Image(systemName: "medal")
+                    SettingsIcon(systemName: "medal", backgroundColor: .blue)
                     Text("Results")
                 }
-                
-                
+            }
+            
+            Section(header: Text("App settings"), footer: Text("Select the application color mode.")) {
+                HStack {
+                    SettingsIcon(systemName: "moonphase.first.quarter", backgroundColor: .yellow)
+                    
+                    Picker("Color Scheme", selection: $selectedScheme) {
+                        Text("Default").tag(ColorSchemeOption.system)
+                        Text("Light").tag(ColorSchemeOption.light)
+                        Text("Dark").tag(ColorSchemeOption.dark)
+                    }
+                }
+            }
+            
+            Section(header: Text("Additional data"), footer: Text("We respect your privacy and are committed to protecting the information you provide to us.")) {
                 NavigationLink {
                     PrivacyView()
                         .navigationTitle("Privacy & Security")
                 } label: {
-                    Image(systemName: "info.circle")
+                    SettingsIcon(systemName: "info", backgroundColor: .green)
                     Text("Privacy & Security")
                 }
             }
@@ -54,10 +69,17 @@ struct SettingsView: View {
                     //                        vm.handleSignOut()
                     shouldShowLogOutOptions.toggle()
                 } label: {
-                    Text("Log out")
+                    HStack {
+                        Spacer()
+                        Text("Log out")
+                        Spacer()
+                    }
                 }
+                .foregroundColor(.red)
             }
         }
+        .preferredColorScheme(colorScheme)
+        .animation(.default, value: selectedScheme)
         .actionSheet(isPresented: $shouldShowLogOutOptions) {
             .init(title: Text("Settings"), message: Text("What do you want to do?"), buttons: [
                 .destructive(Text("Sign out"), action: {
@@ -72,6 +94,17 @@ struct SettingsView: View {
         
         .fullScreenCover(isPresented: $shouldShowLoginView) {
             LoginView()
+        }
+    }
+    
+    private var colorScheme: ColorScheme? {
+        switch selectedScheme {
+        case .system:
+            return nil
+        case .light:
+            return .light
+        case .dark:
+            return .dark
         }
     }
 }
@@ -302,6 +335,6 @@ struct PrivacyView: View {
 
 
 #Preview {
-//    MainView()
-    ProfileView()
+    MainView()
+//    ProfileView()
 }
