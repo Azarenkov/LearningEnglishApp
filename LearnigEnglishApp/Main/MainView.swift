@@ -13,7 +13,7 @@ struct MainView: View {
     
     @ObservedObject private var vm = MainViewModel()
     
-    @State var shouldShowTopicView = false
+//    @State var shouldShowTopicView = false
     @State private var shouldShowTabView = true
     @State private var selectedTab = 0
     

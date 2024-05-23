@@ -14,12 +14,19 @@ struct LearningEnglishAppApp: App {
     
     @ObservedObject private var vm = MainViewModel()
     
+    var shouldShowMainView = UserDefaults.standard.bool(forKey: "shouldShowMainView")
+
+    
     var body: some Scene {
         WindowGroup {
-            if vm.isUserCurrentlyLoggedOut {
-                LoginView()
-            } else {
+            if shouldShowMainView {
                 MainView()
+            } else {
+                if UserDefaults.standard.welcomeScreenShown {
+                    LoginView()
+                } else {
+                    WelcomeView()
+                }
             }
         }
     }

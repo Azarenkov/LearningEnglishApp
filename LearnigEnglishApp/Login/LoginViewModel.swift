@@ -5,6 +5,7 @@
 //  Created by Алексей Азаренков on 04.05.2024.
 //
 
+import SwiftUI
 import Foundation
 import Firebase
 import GoogleSignIn
@@ -13,8 +14,15 @@ import FirebaseCore
 
 class LoginViewModel: ObservableObject {
     
-    @Published var shouldShowMainView = false
+    
+//    @AppStorage("shouldShowMainView")
+    var shouldShowMainView = UserDefaults.standard.bool(forKey: "shouldShowMainView") 
+
+//    @Published var shouldShowMainView = false
     @Published var shouldShowAdminView = false
+    @Published var showMainView = false
+
+    
         
     @Published var isLoginMode = false
     @Published var nickname = ""
@@ -50,7 +58,11 @@ class LoginViewModel: ObservableObject {
             }
             self.loginStatusMessage = "Successfully logged in as user: \(result?.user.uid ?? "")"
             
+            
+            self.showMainView.toggle()
             self.shouldShowMainView.toggle()
+            UserDefaults.standard.set(self.shouldShowMainView, forKey: "shouldShowMainView")
+//            UserDefaults.standard.shouldShowMainView.toggle()
         }
     }
     

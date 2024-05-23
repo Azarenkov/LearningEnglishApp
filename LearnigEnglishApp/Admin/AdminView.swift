@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AdminView: View {
     
-    @State var shouldShowLoginView = false
+    @State private var shouldShowLoginView = false
     
     var body: some View {
         NavigationView {
@@ -69,7 +69,7 @@ struct AdminView: View {
 }
 
 struct AdminTopicView: View {
-    @ObservedObject var vm = AdminTopicViewModel()
+    @ObservedObject private var vm = AdminTopicViewModel()
     @Environment(\.presentationMode) var presentationMode
 
     var body: some View {
@@ -155,7 +155,7 @@ struct AdminTopicView: View {
 import SwiftUI
 
 struct AdminTestView: View {
-    @ObservedObject var viewModel = AdminViewModel()
+    @ObservedObject private var viewModel = AdminViewModel()
     @State private var title: String = ""
     @State private var questionText: String = ""
     @State private var answer: String = ""

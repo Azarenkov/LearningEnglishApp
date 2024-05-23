@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TestsListView: View {
-    @ObservedObject var viewModel = TestsViewModel()
+    @ObservedObject private var viewModel = TestsViewModel()
     @State private var currentIndex = 0
 
     let colors: [Color] = [Color.yellow, Color.red, Color.pink, Color.purple, Color.orange, Color.green, Color.blue]

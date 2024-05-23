@@ -86,17 +86,6 @@ struct WelcomeView: View {
     }
 }
 
-extension UserDefaults {
-    var welcomeScreenShown: Bool {
-        get {
-            return (UserDefaults.standard.value(forKey: "welcomeScreenShown") as? Bool) ?? false
-        }
-        set {
-            UserDefaults.standard.setValue(newValue, forKey: "welcomeScreenShown")
-        }
-    }
-}
-
 struct WelcomeView_Previews: PreviewProvider {
     static var previews: some View {
         WelcomeView()

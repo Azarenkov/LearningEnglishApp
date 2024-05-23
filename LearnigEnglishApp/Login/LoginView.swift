@@ -11,7 +11,6 @@ import FirebaseAuth
 import Foundation
 import FirebaseCore
 
-
 struct LoginView: View {
     
     @Environment(\.colorScheme) var colorScheme
@@ -20,108 +19,114 @@ struct LoginView: View {
     
     @AppStorage("shouldShowGoogleInfo")
     var shouldShowGoogleInfo = false
-    
+        
     @AppStorage("welcomeScreenShown")
     var welcomeScreenShown: Bool = false
-        
+    
     @ObservedObject private var vm = LoginViewModel()
+    
     
     var body: some View {
         ZStack {
             linear
-            if UserDefaults.standard.welcomeScreenShown {
+            VStack {
+                HStack {
+                    Text(vm.isLoginMode ? "Login" : "Sign Up")
+                        .font(.bold(.largeTitle)())
+                    Spacer()
+                }
+                
+                Picker(selection: $vm.isLoginMode, label: Text("Picker")) {
+                    Text("Login")
+                        .tag(true)
+                    Text("Sign Up")
+                        .tag(false)
+                }
+                .pickerStyle(.segmented)
+                
+                Spacer()
+                
+                logo
+                
+                Spacer()
+                
+                textFields
+                
+                Spacer()
+                
+                Button {
+                    
+                    vm.fetchRequest()
+                    
+                } label: {
+                    Text(vm.isLoginMode ? "Login" : "Sign Up")
+                        .font(.headline)
+                        .fontWeight(.semibold)
+                        .padding(.horizontal)
+                        .padding(.vertical, 10)
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(100)
+                }
+                .shadow(radius: 10)
+                
+//                Spacer()
+                
                 VStack {
-                    HStack {
-                        Text(vm.isLoginMode ? "Login" : "Sign Up")
-                            .font(.bold(.largeTitle)())
-                        Spacer()
-                    }
-                    
-                    Picker(selection: $vm.isLoginMode, label: Text("Picker")) {
-                        Text("Login")
-                            .tag(true)
-                        Text("Sign Up")
-                            .tag(false)
-                    }
-                    .pickerStyle(.segmented)
-                    
-                    Spacer()
-                    
-                    logo
-                    
-                    Spacer()
-                    
-                    textFields
-                    
-                    Spacer()
-                    
-                    Button {
-                        
-                        vm.fetchRequest()
-                        
-                    } label: {
-                        Text(vm.isLoginMode ? "Login" : "Sign Up")
-                            .font(.headline)
-                            .fontWeight(.semibold)
-                            .padding(.horizontal)
-                            .padding(.vertical, 10)
-                            .background(Color.blue)
-                            .foregroundColor(.white)
-                            .cornerRadius(100)
-                    }
-                    .shadow(radius: 10)
-                    
                     Text("Or continue with")
                         .font(.caption)
                         .bold()
-                        .padding(.top, 30)
-                        .padding(.bottom, 5)
+                        .padding(.bottom, 2)
                     
                     GoogleSignInButton {
                         guard let clientID = FirebaseApp.app()?.options.clientID else { return }
-
+                        
                         let config = GIDConfiguration(clientID: clientID)
                         GIDSignIn.sharedInstance.configuration = config
-
+                        
                         GIDSignIn.sharedInstance.signIn(withPresenting: getRootViewController()) { result, error in
-                          guard error == nil else {
-                              return
-                          }
-
-                          guard let user = result?.user,
-                            let idToken = user.idToken?.tokenString
-                          else {
-                              return
-                          }
-
-                          let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: user.accessToken.tokenString)
+                            guard error == nil else {
+                                return
+                            }
+                            
+                            guard let user = result?.user,
+                                  let idToken = user.idToken?.tokenString
+                            else {
+                                return
+                            }
+                            
+                            let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: user.accessToken.tokenString)
                             
                             Auth.auth().signIn(with: credential) { result, error in
                                 guard error == nil else {
                                     return
                                 }
-                                vm.shouldShowMainView.toggle()
-                                shouldShowGoogleInfo.toggle()
-                                UserDefaults.standard.shouldShowGoogleInfo.toggle()
+                                
+                                vm.showMainView = true
+                                vm.shouldShowMainView = true
+                                UserDefaults.standard.set(vm.shouldShowMainView, forKey: "shouldShowMainView")
+
+                                
+                                shouldShowGoogleInfo = true
+                                UserDefaults.standard.shouldShowGoogleInfo = true
                             }
                         }
                     }
                 }
-                .padding()
-                .alert(isPresented: $vm.showAlert) {
-                    Alert(title: Text("Result"), message: Text(vm.alertMessage), dismissButton: .default(Text("OK")))
-                }
-                
-                .fullScreenCover(isPresented: $vm.shouldShowAdminView, onDismiss: nil) {
-                    AdminView()
-                }
-                
-                
-                .fullScreenCover(isPresented: $vm.shouldShowMainView, onDismiss: nil) {
-                    MainView()
-                }
-            } else {
-                WelcomeView()
+                .padding(.top, 13)
+            }
+            .padding()
+            .alert(isPresented: $vm.showAlert) {
+                Alert(title: Text("Result"), message: Text(vm.alertMessage), dismissButton: .default(Text("OK")))
+            }
+            
+            .fullScreenCover(isPresented: $vm.shouldShowAdminView, onDismiss: nil) {
+                AdminView()
+            }
+            
+            
+            .fullScreenCover(isPresented: $vm.showMainView, onDismiss: nil) {
+                MainView()
             }
         }
     }
@@ -188,26 +193,6 @@ struct LoginView: View {
     
 }
 
-
-extension UserDefaults {
-    var shouldShowGoogleInfo: Bool {
-        get {
-            return (UserDefaults.standard.value(forKey: "shouldShowGoogleInfo") as? Bool) ?? false
-        }
-        set {
-            UserDefaults.standard.setValue(newValue, forKey: "shouldShowGoogleInfo")
-        }
-    }
-}
-
-struct LoginView_Prewiews: PreviewProvider {
-    static var previews: some View {
-        LoginView(
-
-        )
-    }
-}
-
 struct GoogleSignInButton: View {
     
     var action: () -> Void
@@ -220,7 +205,7 @@ struct GoogleSignInButton: View {
                    .resizable()
                    .frame(width: 30, height: 30)
            }
-           .frame(width: 70, height: 50)
+           .frame(width: 60, height: 45)
            .background(Color.clear)
            .cornerRadius(15)
            .overlay(
@@ -228,7 +213,13 @@ struct GoogleSignInButton: View {
                 .stroke(Color(.systemGray), lineWidth: 1.5)
            )
        }
-       .shadow(radius: 0)
+    }
+}
 
+struct LoginView_Prewiews: PreviewProvider {
+    static var previews: some View {
+        LoginView(
+            
+        )
     }
 }

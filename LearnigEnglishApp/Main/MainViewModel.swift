@@ -5,6 +5,7 @@
 //  Created by Алексей Азаренков on 28.02.2024.
 //
 
+import SwiftUI
 import Foundation
 import Firebase
 import FirebaseFirestoreSwift
@@ -13,7 +14,10 @@ class MainViewModel: ObservableObject {
     
     @Published var errorMessage = ""
     @Published var user: User?
-    @Published var isUserCurrentlyLoggedOut = false
+    @Published var isUserCurrentlyLoggedOut = true
+    
+//    @AppStorage("shouldShowMainView")
+//    var shouldShowMainView = false
     
     init() {
         
