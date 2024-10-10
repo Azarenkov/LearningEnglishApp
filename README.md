@@ -1,3 +1,5 @@
+Stack: Swift, SwiftUI, Firebase, Combine
+
 ABOUT THIS PROJECT❓
 
 This is application for learning English and it was created in Swift. I'm doing it for my college thesis and will be taking it in July. In this work, registration and authorization of users with Firebase works. In the future there will be topics to study and test tasks that will show the result.
