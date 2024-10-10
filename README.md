@@ -1,4 +1,4 @@
-Stack: Swift, SwiftUI, Firebase, Combine
+Stack: Swift, SwiftUI, Firebase, Combine, MVVM
 
 ABOUT THIS PROJECT❓
 
